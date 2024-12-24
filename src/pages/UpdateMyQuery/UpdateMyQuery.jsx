@@ -3,6 +3,8 @@ import {useLoaderData} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
+import axios from "axios";
+import {Helmet} from "react-helmet-async";
 
 const UpdateMyQuery = () => {
 
@@ -16,25 +18,29 @@ const UpdateMyQuery = () => {
         boycottingReasonDetails,
         userEmail,
         userName,
+        productImageUrl,
+        boycottReason,
 
         createdAt,
         recommendationCount,
+        _id
     } = query;
     console.log(query)
 
     const [queryData, setQueryData] = useState({
-        productName: "",
-        productBrand: "",
-        productImageURL: "",
-        queryTitle: "",
-        boycottingReasonDetails: "",
+        productName,
+        productBrand,
+        productImageUrl,
+        queryTitle,
+        boycottReason,
     });
 
+    const updateQueryData = {...queryData};
     const handleUpdate = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.put(`http://localhost:5000/queries/${id}`, queryData);
+            await axios.put(`http://localhost:5000/queries/${_id}`,updateQueryData);
             toast("Query updated successfully!");
            
         } catch (error) {
@@ -55,6 +61,10 @@ const UpdateMyQuery = () => {
     return (
         <div>
 
+            <Helmet>
+                <title>Queries | RecommendHub</title>
+            </Helmet>
+
            <PageTitle pageTitle="My Query Update" />
             <PageBanner heading='Update Your Query' 
                         subTitle='Edit and refine the details of your query to keep your information up-to-date.'></PageBanner>
@@ -70,7 +80,7 @@ const UpdateMyQuery = () => {
                             <input
                                 type="text"
                                 name="productName"
-                                value={query?.productName}
+                                defaultValue={query?.productName}
                                 onChange={handleChange}
                                 className="input input-bordered w-full"
                                 required
@@ -84,7 +94,7 @@ const UpdateMyQuery = () => {
                             <input
                                 type="text"
                                 name="productBrand"
-                                value={query?.productBrand}
+                                defaultValue={query?.productBrand}
                                 onChange={handleChange}
                                 className="input input-bordered w-full"
                                 required
@@ -98,7 +108,7 @@ const UpdateMyQuery = () => {
                             <input
                                 type="url"
                                 name="productImageURL"
-                                value={query?.productImageURL}
+                                defaultValue={query?.productImageUrl}
                                 onChange={handleChange}
                                 className="input input-bordered w-full"
                             />
@@ -111,7 +121,7 @@ const UpdateMyQuery = () => {
                             <input
                                 type="text"
                                 name="queryTitle"
-                                value={query?.queryTitle}
+                                defaultValue={query?.queryTitle}
                                 onChange={handleChange}
                                 className="input input-bordered w-full"
                                 required
@@ -123,8 +133,8 @@ const UpdateMyQuery = () => {
                                 <span className="label-text">Boycotting Reason Details</span>
                             </label>
                             <textarea
-                                name="boycottingReasonDetails"
-                                value={query?.boycottingReasonDetails}
+                                name="boycottReason"
+                                defaultValue={query?.boycottReason}                                
                                 onChange={handleChange}
                                 className="textarea textarea-bordered w-full"
                                 rows="4"

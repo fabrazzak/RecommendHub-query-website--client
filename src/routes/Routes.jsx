@@ -11,6 +11,7 @@ import MyQueries from "../pages/MyQueries/MyQueries.jsx";
 import AddQueries from "../pages/AddQueries/AddQueries.jsx";
 import ViewDetailsMyQuery from "../pages/ViewDetailsMyQuery/ViewDetailsMyQuery.jsx";
 import UpdateMyQuery from "../pages/UpdateMyQuery/UpdateMyQuery.jsx";
+import Queries from "../pages/Queries/Queries.jsx";
 
 
 
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
                 element: <HomePage></HomePage>
             }
             ,{
+                path: "/queries",
+                element: <Queries />,
+                loader: () => fetch('http://localhost:5000/all-queries')
+               
+            }  ,{
                 path: "/my-queries",
                 element: <MyQueries />,
                

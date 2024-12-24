@@ -31,7 +31,7 @@ const AddQueries = () => {
             userEmail: user?.email,
             userName: user?.displayName,
             userImage: user?.photoURL,
-            createdAt: new Date().toISOString().split('T')[0],
+            createdAt: new Date().toISOString(),
             recommendationCount: 0,
             productName,
             productBrand,
@@ -48,7 +48,7 @@ const AddQueries = () => {
                 .then(response => console.log(response))           
            
            
-            toast("Wow so easy!");
+            toast("Successfully add Query!");
             form.reset()
            
         } catch (error) {

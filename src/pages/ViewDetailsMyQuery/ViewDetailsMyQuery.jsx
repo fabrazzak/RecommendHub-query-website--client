@@ -4,6 +4,7 @@ import {useLoaderData, useParams} from "react-router-dom";
 import FourOFour from "../FourOFour/FourOFour.jsx";
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
+import {Helmet} from "react-helmet-async";
 
 const ViewDetailsMyQuery = () => {
  
@@ -14,7 +15,7 @@ const ViewDetailsMyQuery = () => {
         productBrand,
        
         queryTitle,
-        boycottingReasonDetails,
+        boycottReason,
         userEmail,
         userName,
 
@@ -27,6 +28,9 @@ const ViewDetailsMyQuery = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>View Details My Queries | RecommendHub</title>
+            </Helmet>
             <PageTitle pageTitle="View Details" />
             <PageBanner heading={queryTitle} ></PageBanner>
 
@@ -49,7 +53,8 @@ const ViewDetailsMyQuery = () => {
                                     <span className="font-semibold">Product Brand:</span> {productBrand}
                                 </p>
                                 <p>
-                                    <span className="font-semibold">Boycotting Reason:</span> {boycottingReasonDetails}
+                                    <span className="font-semibold">Boycotting Reason:</span> {
+                                    boycottReason}
                                 </p>
                                 <p>
                                     <span className="font-semibold">Submitted By:</span> {userName}

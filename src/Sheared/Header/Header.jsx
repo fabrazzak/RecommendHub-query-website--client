@@ -59,7 +59,7 @@ const Header = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box w-72 mt-3  p-2 shadow z-10">
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box w-72 mt-3 text-[#181718]  p-2 shadow z-10">
                             {itemList}
 
                         </ul>
@@ -83,8 +83,8 @@ const Header = () => {
                             </li>
 
                         :
-                        <ul className='flex gap-6 font-bold'>
-                            <li className={` `}>
+                        <ul className='flex gap-6 font-bold menu'>
+                            <li >
                                 <NavLink to='/login'>Login</NavLink>
                             </li>
                             

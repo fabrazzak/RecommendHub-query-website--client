@@ -111,7 +111,7 @@ const MyQueries = () => {
                 {queries.length === 0 ? (
                     <div className="flex flex-col items-center">
                         <p className="text-gray-500 mb-4">No queries found.</p>
-                        <Link to="/add-query" className="btn bg-[#181718] hover:bg-[#be161e] text-white">
+                        <Link to="/add-queries" className="btn bg-[#181718] hover:bg-[#be161e] text-white">
                             Add Query
                         </Link>
                     </div>
