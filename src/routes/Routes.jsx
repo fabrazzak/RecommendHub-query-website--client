@@ -9,6 +9,8 @@ import Register from "../pages/Register/Register.jsx";
 import FourOFour from "../pages/FourOFour/FourOFour.jsx";
 import MyQueries from "../pages/MyQueries/MyQueries.jsx";
 import AddQueries from "../pages/AddQueries/AddQueries.jsx";
+import ViewDetailsMyQuery from "../pages/ViewDetailsMyQuery/ViewDetailsMyQuery.jsx";
+import UpdateMyQuery from "../pages/UpdateMyQuery/UpdateMyQuery.jsx";
 
 
 
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
             } ,{
                 path: "/add-queries",
                 element: <AddQueries></AddQueries>,
+            }  ,{
+                path: "/view-details-my-queries/:id",
+                element: <ViewDetailsMyQuery></ViewDetailsMyQuery>,
+                loader: ({ params }) => fetch(`http://localhost:5000/queries/${params.id}`)
+            } ,{
+                path: "update-my-query/:id",
+                element: <UpdateMyQuery></UpdateMyQuery>,
+                loader: ({ params }) => fetch(`http://localhost:5000/queries/${params.id}`)
             } ,{
                 path: "/login",
                 element: <Login></Login>,

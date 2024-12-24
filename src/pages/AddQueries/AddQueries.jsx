@@ -5,6 +5,7 @@ import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
+import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 
 const AddQueries = () => {
 
@@ -20,6 +21,7 @@ const AddQueries = () => {
         const productBrand=form.productBrand.value;
         const productImageUrl=form.productImageUrl.value;
         const queryTitle=form.queryTitle.value;
+        const boycottReason=form.boycottReason.value;
         
 
        
@@ -29,12 +31,13 @@ const AddQueries = () => {
             userEmail: user?.email,
             userName: user?.displayName,
             userImage: user?.photoURL,
-            createdAt: new Date().toISOString(),
+            createdAt: new Date().toISOString().split('T')[0],
             recommendationCount: 0,
             productName,
             productBrand,
             productImageUrl,
             queryTitle,
+            boycottReason,
             
         };
         
@@ -60,13 +63,16 @@ const AddQueries = () => {
             </Helmet>
 
             <PageTitle pageTitle="Add Query" ></PageTitle>
+            <PageBanner heading='Submit Your Product Query'
+                        subTitle='Let us help you find the best alternatives and recommendations for your needs.'> 
+            </PageBanner>
 
 
             <div>
                 <div className="flex flex-col items-center p-6 shadow-2xl">
-                    <h1 className="text-2xl font-bold mb-4">Submit Your Product Query</h1>
+                    <h1 className="text-2xl font-bold mb-4"></h1>
                     <p className="text-gray-500 mb-6">
-                        Let us help you find the best alternatives and recommendations for your needs.
+
                     </p>
                     <form onSubmit={handleSubmit} className="w-full md:w-2/4 space-y-4 shadow-2xl p-5 rounded">
                         <div className="form-control">

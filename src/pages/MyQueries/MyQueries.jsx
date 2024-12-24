@@ -9,6 +9,7 @@ import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 import axios from "axios";
 import Loading from "../../components/Loading/Loading.jsx";
 import Swal from 'sweetalert2'
+import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 
 
 
@@ -100,23 +101,10 @@ const MyQueries = () => {
                 <title> My Queries| RecommendHub </title>
             </Helmet>
             <PageTitle pageTitle="My Queries"></PageTitle>
-            <div className='my-query-banner flex-col gap-3'>
-
-                <div className='my-query-banner-overlay '></div>
-                <h1 className='text-3xl text-white z-10 font-bold'>"Have a Product Query? Let’s Find the Best
-                    Alternatives!"</h1>
-                <p className=' text-[#d7d7d7] z-10 font-bold'>"Share your concerns, get tailored recommendations, and
-                    explore smarter choices."</p>
-
-                <Link className='z-10' to='/add-queries'>
-                    <button
-                        className='z-10 btn border-none px-10 font-bold text-white bg-[#181718] hover:bg-[#be161e]'>"Add
-                        Your Query Now"
-                    </button>
-                </Link>
-
-
-            </div>
+          <PageBanner heading='"Have a Product Query? Let’s Find the Best
+                    Alternatives!"' subTitle='"Share your concerns, get tailored recommendations, and
+                    explore smarter choices."' btn='"Add
+                        Your Query Now"'></PageBanner>
 
             <div className="p-6">
                 
@@ -143,14 +131,14 @@ const MyQueries = () => {
                                     <p className="text-sm text-gray-500">Brand: {query.productBrand}</p>
                                     <p className="text-sm">{query.queryTitle}</p>
                                     <div className="flex flex-wrap gap-6 justify-between mt-4 ">
-                                        <Link to={`/view-details-my-queries/${query.id}`} className="btn w-full  bg-[#181718] hover:bg-[#be161e] text-white ">
+                                        <Link to={`/view-details-my-queries/${query?._id}`} className="btn w-full  bg-[#181718] hover:bg-[#be161e] text-white ">
                                             View Details
                                         </Link>
-                                        <Link to={`/update-my-query/${query.id}`} className="btn px-8  bg-[#181718] hover:bg-[#be161e] text-white ">
+                                        <Link to={`/update-my-query/${query?._id}`} className="btn px-8  bg-[#181718] hover:bg-[#be161e] text-white ">
                                             Update
                                         </Link>
                                         <button
-                                            onClick={() => handleDelete(query._id)}
+                                            onClick={() => handleDelete(query?._id)}
                                             className="btn  px-8  bg-[#be161e] hover:bg-[#be161e] text-white ">
                                             Delete
                                         </button>
