@@ -12,6 +12,7 @@ import AddQueries from "../pages/AddQueries/AddQueries.jsx";
 import ViewDetailsMyQuery from "../pages/ViewDetailsMyQuery/ViewDetailsMyQuery.jsx";
 import UpdateMyQuery from "../pages/UpdateMyQuery/UpdateMyQuery.jsx";
 import Queries from "../pages/Queries/Queries.jsx";
+import QueryDetails from "../pages/QueryDetails/QueryDetails.jsx";
 
 
 
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
                 element: <Queries />,
                 loader: () => fetch('http://localhost:5000/all-queries')
                
-            }  ,{
+            }
+            ,{
+                path: "/queries/:id",
+                element: <QueryDetails></QueryDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/all-queries/${params.id}`)
+            } ,{
                 path: "/my-queries",
                 element: <MyQueries />,
                
