@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import axios from "axios";
 import {useLoaderData, useParams} from "react-router-dom";
 import FourOFour from "../FourOFour/FourOFour.jsx";
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 import {Helmet} from "react-helmet-async";
+import Loading from "../../components/Loading/Loading.jsx";
+import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 
 const ViewDetailsMyQuery = () => {
- 
+    const { loading } = useContext(AuthContext)
     
     const query=useLoaderData()
     const {
@@ -24,7 +26,9 @@ const ViewDetailsMyQuery = () => {
     } = query;
     console.log(query)
 
-
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <div>

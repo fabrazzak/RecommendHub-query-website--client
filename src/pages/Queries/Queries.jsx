@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import {Helmet} from "react-helmet-async";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 import {Link, useLoaderData} from "react-router-dom";
+import Loading from "../../components/Loading/Loading.jsx";
+import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 
 const Queries = () => {
+    const { loading } = useContext(AuthContext)
     const queriesData=useLoaderData()
-    const queries = [...queriesData].sort((a, b) => b.createdAt - a.createdAt);    
+    const queries = [...queriesData].sort((a, b) => b.createdAt - a.createdAt);
+    if (loading) {
+        return <Loading />;
+    }
     return (
         <div>
             <Helmet>

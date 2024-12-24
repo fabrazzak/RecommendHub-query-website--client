@@ -56,7 +56,7 @@ const QueryDetails = () => {
             recommenderName: user?.displayName, // Replace with actual user name
             timestamp: new Date()
         }            
-           
+
            await axios.post('http://localhost:5000/add-recommend', {addRecommendationInfo})
                 .then(function (response) {
                     console.log(response);
@@ -74,9 +74,11 @@ const QueryDetails = () => {
           
        
     };
-    
-    
-    
+
+
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <div>

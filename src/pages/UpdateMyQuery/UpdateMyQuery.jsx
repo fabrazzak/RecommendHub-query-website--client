@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useLoaderData} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 import axios from "axios";
 import {Helmet} from "react-helmet-async";
+import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const UpdateMyQuery = () => {
 
-
+    const { loading } = useContext(AuthContext)
     const query=useLoaderData()
     const {
         productName,
@@ -58,6 +60,9 @@ const UpdateMyQuery = () => {
         }));
     };
 
+    if (loading) {
+        return <Loading />;
+    }
     return (
         <div>
 
