@@ -66,7 +66,7 @@ const QueryDetails = () => {
                 });
        
         Swal.fire({
-                title: "Drag me!",
+                title: "Successfully Added",
                 icon: "success",
                 draggable: true
             });

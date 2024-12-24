@@ -13,6 +13,7 @@ import ViewDetailsMyQuery from "../pages/ViewDetailsMyQuery/ViewDetailsMyQuery.j
 import UpdateMyQuery from "../pages/UpdateMyQuery/UpdateMyQuery.jsx";
 import Queries from "../pages/Queries/Queries.jsx";
 import QueryDetails from "../pages/QueryDetails/QueryDetails.jsx";
+import MyRecommendations from "../pages/MyRecommendations/MyRecommendations.jsx";
 
 
 
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             } ,{
                 path: "/my-queries",
                 element: <MyQueries />,
+               
+            },{
+                path: "/my-recommendations",
+                element:<MyRecommendations />,
                
             } ,{
                 path: "/add-queries",
