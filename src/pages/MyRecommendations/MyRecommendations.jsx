@@ -100,7 +100,7 @@ const MyRecommendations = () => {
                         subTitle='Review and Manage All My Product Suggestions'></PageBanner>
 
 
-            <div className="container mx-auto my-10 p-5 bg-white shadow-lg rounded-lg">
+            <div className="container overflow-auto mx-auto my-10 p-5 bg-white shadow-lg rounded-lg">
                
                 {recommendations.length === 0 ? (
                     <div className="text-center">

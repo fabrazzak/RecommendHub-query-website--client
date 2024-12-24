@@ -14,6 +14,7 @@ import UpdateMyQuery from "../pages/UpdateMyQuery/UpdateMyQuery.jsx";
 import Queries from "../pages/Queries/Queries.jsx";
 import QueryDetails from "../pages/QueryDetails/QueryDetails.jsx";
 import MyRecommendations from "../pages/MyRecommendations/MyRecommendations.jsx";
+import RecommendationForMe from "../pages/RecommendationForMe/RecommendationForMe.jsx";
 
 
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             } ,{
                 path: "/my-queries",
                 element: <MyQueries />,
+               
+            },{
+                path: "/recommendations-for-me",
+                element:<RecommendationForMe></RecommendationForMe>
                
             },{
                 path: "/my-recommendations",
