@@ -3,10 +3,9 @@ import React from 'react';
 const Loading = () => {
     return (
         <div>
-            <div className='hero min-h-screen justify-center items-center content-center text-center'>
-                <span className="loading loading-spinner loading-lg "></span>
-
-            </div>
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-infinity loading-lg"></span>
+            </div>;
 
         </div>
     );

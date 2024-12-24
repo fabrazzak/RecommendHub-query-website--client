@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     createBrowserRouter,
 } from "react-router-dom";
@@ -9,7 +9,6 @@ import Register from "../pages/Register/Register.jsx";
 import FourOFour from "../pages/FourOFour/FourOFour.jsx";
 import MyQueries from "../pages/MyQueries/MyQueries.jsx";
 import AddQueries from "../pages/AddQueries/AddQueries.jsx";
-
 
 
 
@@ -24,7 +23,8 @@ const router = createBrowserRouter([
             }
             ,{
                 path: "/my-queries",
-                element: <MyQueries></MyQueries>,
+                element: <MyQueries />,
+               
             } ,{
                 path: "/add-queries",
                 element: <AddQueries></AddQueries>,
