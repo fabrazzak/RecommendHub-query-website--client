@@ -34,12 +34,12 @@ const RecommendationForMe = () => {
                 <title> Recommendation For Me | RecommendHub</title>
             </Helmet>
 
-            <PageTitle pageTitle={`My Recommendations. `}/>
-            <PageBanner heading='My Impactful Suggestions'
-                        subTitle='Review and Manage All My Product Suggestions'></PageBanner>
+            <PageTitle pageTitle={`Recommendations for Me. ${recommendations.length} `} />
+            <PageBanner heading='Tailored Suggestions Just for me'
+                        subTitle='Explore recommendations made by others for your queries. Discover better alternatives and helpful suggestions!'></PageBanner>
 
-            <div className="container mx-auto p-4">
-                <h1 className="text-2xl font-bold mb-4">Recommendations For Me</h1>
+            <div className="container mx-auto p-4 overflow-auto">
+              
                 {recommendations.length === 0 ? (
                     <div className="text-center">No recommendations found for your queries.</div>
                 ) : (
@@ -51,6 +51,7 @@ const RecommendationForMe = () => {
                             <th className="border px-4 py-2">Recommendation Reason</th>
                             <th className="border px-4 py-2">Recommender</th>
                             <th className="border px-4 py-2">Date</th>
+                            <th className="border px-4 py-2">View </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -64,6 +65,14 @@ const RecommendationForMe = () => {
                                 </td>
                                 <td className="border px-4 py-2">
                                     {new Date(recommendation.timestamp).toLocaleString()}
+                                </td>
+                                <td className="border px-4 py-2">
+                                    <button
+                                        className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded"
+                                        onClick={() => handleDelete(rec._id, rec.queryId)}
+                                    >
+                                        Details
+                                    </button>
                                 </td>
                             </tr>
                         ))}

@@ -15,6 +15,7 @@ import Queries from "../pages/Queries/Queries.jsx";
 import QueryDetails from "../pages/QueryDetails/QueryDetails.jsx";
 import MyRecommendations from "../pages/MyRecommendations/MyRecommendations.jsx";
 import RecommendationForMe from "../pages/RecommendationForMe/RecommendationForMe.jsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 
 
 
@@ -35,30 +36,30 @@ const router = createBrowserRouter([
             }
             ,{
                 path: "/queries/:id",
-                element: <QueryDetails></QueryDetails>,
+                element : <PrivateRoute> <QueryDetails></QueryDetails> </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/all-queries/${params.id}`)
             } ,{
                 path: "/my-queries",
-                element: <MyQueries />,
+                element:  <PrivateRoute>  <MyQueries /> </PrivateRoute>,
                
             },{
                 path: "/recommendations-for-me",
-                element:<RecommendationForMe></RecommendationForMe>
+                element: <PrivateRoute>  <RecommendationForMe></RecommendationForMe></PrivateRoute>
                
             },{
                 path: "/my-recommendations",
-                element:<MyRecommendations />,
+                element: <PrivateRoute> <MyRecommendations /> </PrivateRoute>,
                
             } ,{
                 path: "/add-queries",
-                element: <AddQueries></AddQueries>,
+                element: <PrivateRoute> <AddQueries></AddQueries> </PrivateRoute>,
             }  ,{
                 path: "/view-details-my-queries/:id",
-                element: <ViewDetailsMyQuery></ViewDetailsMyQuery>,
+                element: <PrivateRoute> <ViewDetailsMyQuery></ViewDetailsMyQuery></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/queries/${params.id}`)
             } ,{
                 path: "update-my-query/:id",
-                element: <UpdateMyQuery></UpdateMyQuery>,
+                element: <PrivateRoute> <UpdateMyQuery></UpdateMyQuery></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/queries/${params.id}`)
             } ,{
                 path: "/login",

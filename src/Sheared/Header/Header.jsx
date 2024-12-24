@@ -28,21 +28,25 @@ const Header = () => {
 
             <li> <NavLink to="/">Home</NavLink>    </li>
             <li> <NavLink to="/queries">Queries</NavLink>  </li>
-            <li>  <NavLink to="/recommendations-for-me">Recommendations For Me</NavLink> </li>
-            <li> <NavLink to="/my-queries">My Queries</NavLink>   </li >
-            <li> <NavLink to="/my-recommendations">My recommendations</NavLink>   </li >   
+            {user?
+                <>
+                    <li><NavLink to="/recommendations-for-me">Recommendations For Me</NavLink></li>
+                    <li><NavLink to="/my-queries">My Queries</NavLink></li>
+                    <li><NavLink to="/my-recommendations">My recommendations</NavLink></li>
+                </>
+                :
+                ""
+            }
 
 
         </>
-
-
 
 
     return (
         <div className=''>
             <div className={`navbar  bg-[#be161e] text-white px-6 `}>
                 <div className="navbar-start flex flex-col md:flex-row ">
-                    <div className="dropdown">
+                <div className="dropdown">
                         <div tabIndex={0} role="button" className={`btn btn-ghost lg:hidden `}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -78,14 +82,14 @@ const Header = () => {
                                  <a href="#" data-tooltip-id="my-tooltip"
                                     data-tooltip-content={user.displayName} className='flex gap-4 content-center item-center justify-center ' > 
                                      <img className='w-10 h-10 rounded-full ' src={user?.photoURL} alt="" referrerPolicy="no-referrer" />
-                                     <span className={`mt-2 font-bold`}>Log out</span>
+                                     <span className={`mt-2 font-bold`}>Logout</span>
                                  </a>
                             </li>
 
                         :
                         <ul className='flex gap-6 font-bold menu'>
                             <li >
-                                <NavLink to='/login'>Login</NavLink>
+                                <NavLink to='/login'>Log-in</NavLink>
                             </li>
                             
                         </ul>}
