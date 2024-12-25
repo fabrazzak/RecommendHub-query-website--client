@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 
-const Recommendation = ({ recommendations}) => {
+const Recommendation = ({recommendations}) => {
     const { user ,loading } = useContext(AuthContext)
     return (
         <div>
@@ -14,13 +14,13 @@ const Recommendation = ({ recommendations}) => {
                     <div className="flex items-center justify-center">
                         <div className="animate-spin rounded-full h-6 w-6 border-t-4 border-blue-500"></div>
                     </div>
-                ) : recommendations.length === 0 ? (
+                ) : recommendations?.length === 0 ? (
                     <p className="text-gray-600 italic text-center">
                         No recommendations found. Be the first to recommend!
                     </p>
                 ) : (
                     <ul className="space-y-6">
-                        {recommendations.map((rec) => (
+                        {recommendations?.map((rec) => (
                             <li
                                 key={rec._id}
                                 className="bg-white p-4 rounded-lg shadow-sm border border-gray-200"

@@ -26,7 +26,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage></HomePage>
+                element: <HomePage></HomePage>,
+                loader: ({ params }) => fetch('http://localhost:5000/all-queries?limit=6')
             }
             ,{
                 path: "/queries",

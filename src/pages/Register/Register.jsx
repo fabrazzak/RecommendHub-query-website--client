@@ -77,12 +77,10 @@ const Register = () => {
                 <title> Sign Up | RecommendHub</title>
             </Helmet>
             <PageTitle  pageTitle='Sign-up'></PageTitle>
-            <div className="hero  min-h-screen">
-                <div className="hero-content flex-col ">
-                    <div className="text-center ">
-
-                    </div>
-                    <div className="card bg-base-100 md:w-96  shrink-0 shadow-2xl">
+            <div className="">
+                <div className=" mx-auto flex justify-center items-center py-10 ">
+                    
+                    <div className="card bg-base-100 md:w-2/5  shrink-0 shadow-2xl">
                         <form onSubmit={handleOnSubmit} className="card-body">
                             <div className="form-control">
                                 <label className="label">
