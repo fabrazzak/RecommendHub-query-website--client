@@ -19,7 +19,7 @@ Welcome to the **Product Recommendation Platform**! This project is designed to 
 ---
 
 ## 🖼️ Live Demo
-[Live Site Link](#) - *Insert your live deployment URL here.*
+[https://queries-b074f.web.app/](#) - *Insert your live deployment URL here.*
 
 ---
 
