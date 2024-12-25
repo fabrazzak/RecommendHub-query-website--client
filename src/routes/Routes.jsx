@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
     createBrowserRouter,
 } from "react-router-dom";
@@ -26,50 +26,50 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage></HomePage>,               
+                element: <HomePage></HomePage>,
             }
-            ,{
+            , {
                 path: "/queries",
-                element: <Queries />,                            
+                element: <Queries />,
             }
-            ,{
+            , {
                 path: "/queries/:id",
-                element : <PrivateRoute> <QueryDetails></QueryDetails> </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/all-queries/${params.id}`)
-            } ,{
+                element: <PrivateRoute> <QueryDetails></QueryDetails> </PrivateRoute>,
+                loader: ({ params }) => fetch(`https://queries-server.vercel.app/all-queries/${params.id}`)
+            }, {
                 path: "/my-queries",
-                element:  <PrivateRoute>  <MyQueries /> </PrivateRoute>,
-               
-            },{
+                element: <PrivateRoute>  <MyQueries /> </PrivateRoute>,
+
+            }, {
                 path: "/recommendations-for-me",
                 element: <PrivateRoute>  <RecommendationForMe></RecommendationForMe></PrivateRoute>
-               
-            },{
+
+            }, {
                 path: "/my-recommendations",
                 element: <PrivateRoute> <MyRecommendations /> </PrivateRoute>,
-               
-            } ,{
+
+            }, {
                 path: "/add-queries",
                 element: <PrivateRoute> <AddQueries></AddQueries> </PrivateRoute>,
-            }  ,{
+            }, {
                 path: "/view-details-my-queries/:id",
                 element: <PrivateRoute> <ViewDetailsMyQuery></ViewDetailsMyQuery></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/queries/${params.id}`)
-            } ,{
+                loader: ({ params }) => fetch(`https://queries-server.vercel.app/queries/${params.id}`)
+            }, {
                 path: "update-my-query/:id",
                 element: <PrivateRoute> <UpdateMyQuery></UpdateMyQuery></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/queries/${params.id}`)
-            } ,{
+                loader: ({ params }) => fetch(`https://queries-server.vercel.app/queries/${params.id}`)
+            }, {
                 path: "/login",
                 element: <Login></Login>,
             }
-            ,{
+            , {
                 path: "/register",
-                element:<Register></Register>,
+                element: <Register></Register>,
             }
-            ,{
-            path:"*",
-                element:<FourOFour></FourOFour>
+            , {
+                path: "*",
+                element: <FourOFour></FourOFour>
             }
         ],
     },

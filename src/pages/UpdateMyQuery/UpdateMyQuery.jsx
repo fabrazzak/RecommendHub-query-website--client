@@ -1,17 +1,17 @@
-import React, {useContext, useState} from 'react';
-import {useLoaderData} from "react-router-dom";
-import {toast, ToastContainer} from "react-toastify";
+import React, { useContext, useState } from 'react';
+import { useLoaderData } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 import axios from "axios";
-import {Helmet} from "react-helmet-async";
-import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../components/authProvider/AuthProvider.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
 
 const UpdateMyQuery = () => {
 
     const { loading } = useContext(AuthContext)
-    const query=useLoaderData()
+    const query = useLoaderData()
     const {
         productName,
         productBrand,
@@ -37,14 +37,14 @@ const UpdateMyQuery = () => {
         boycottReason,
     });
 
-    const updateQueryData = {...queryData};
+    const updateQueryData = { ...queryData };
     const handleUpdate = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.put(`http://localhost:5000/queries/${_id}`,updateQueryData);
+            await axios.put(`https://queries-server.vercel.app/queries/${_id}`, updateQueryData);
             toast("Query updated successfully!");
-           
+
         } catch (error) {
             console.error("Error updating query:", error);
             alert("Failed to update the query. Please try again.");
@@ -70,13 +70,13 @@ const UpdateMyQuery = () => {
                 <title>Queries | RecommendHub</title>
             </Helmet>
 
-           <PageTitle pageTitle="My Query Update" />
-            <PageBanner heading='Update Your Query' 
-                        subTitle='Edit and refine the details of your query to keep your information up-to-date.'></PageBanner>
+            <PageTitle pageTitle="My Query Update" />
+            <PageBanner heading='Update Your Query'
+                subTitle='Edit and refine the details of your query to keep your information up-to-date.'></PageBanner>
 
             <div className="container mx-auto">
                 <div className="card w-full rounded-none  shadow-md ">
-                  
+
                     <form onSubmit={handleUpdate} className="flex flex-col gap-4 md:w-2/4 mx-auto shadow rounded p-8 ">
                         <div>
                             <label className="label">
@@ -139,7 +139,7 @@ const UpdateMyQuery = () => {
                             </label>
                             <textarea
                                 name="boycottReason"
-                                defaultValue={query?.boycottReason}                                
+                                defaultValue={query?.boycottReason}
                                 onChange={handleChange}
                                 className="textarea textarea-bordered w-full"
                                 rows="4"

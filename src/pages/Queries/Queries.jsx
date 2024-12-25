@@ -1,28 +1,28 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
-import {Helmet} from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
-import {Link, useLoaderData} from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
-import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
+import { AuthContext } from "../../components/authProvider/AuthProvider.jsx";
 import QueryCard from "./QueryCard.jsx";
 import axios from "axios";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../assets/not-found.json";
-import {IoMdGrid} from "react-icons/io";
-import {BsFillGrid3X3GapFill, BsGridFill} from "react-icons/bs";
-import {HiViewGrid} from "react-icons/hi";
+import { IoMdGrid } from "react-icons/io";
+import { BsFillGrid3X3GapFill, BsGridFill } from "react-icons/bs";
+import { HiViewGrid } from "react-icons/hi";
 
 const Queries = () => {
     const { loading } = useContext(AuthContext)
-    const [queriesData,setQueriesData] = useState([]);
+    const [queriesData, setQueriesData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [grid,setGrid] = useState(true);
-    
+    const [grid, setGrid] = useState(true);
+
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/all-queries')
+            .get('https://queries-server.vercel.app/all-queries')
             .then((res) => setQueriesData(res.data))
             .catch((err) => console.error('Error fetching queries:', err));
     }, []);
@@ -33,25 +33,25 @@ const Queries = () => {
     // Handle Search
     const handleSearch = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/search`, {
+            const res = await axios.get(`https://queries-server.vercel.app/search`, {
                 params: { search: searchTerm },
             });
             if (loading) {
                 return <Loading />;
             }
             setQueriesData(res.data);
-           
-           
+
+
         } catch (err) {
-          console.log(err)
+            console.log(err)
         }
     };
-    
-    
-    const changeLayout= (value)=>{
+
+
+    const changeLayout = (value) => {
         setGrid(value)
     }
-    
+
     if (loading) {
         return <Loading />;
     }
@@ -84,21 +84,21 @@ const Queries = () => {
                             </button>
                         </div>
                         <div className='flex justify-end my-8  gap-4 join'>
-                            
-                                <BsFillGrid3X3GapFill onClick={()=>changeLayout(true)}  className={`text-3xl cursor-pointer ${grid ? "  text-[#be161e]": " "}  `}/>
-                            <HiViewGrid onClick={()=>changeLayout(false)}  className={`text-3xl cursor-pointer  ${grid ? "  ": "text-[#be161e] "}`}/>
+
+                            <BsFillGrid3X3GapFill onClick={() => changeLayout(true)} className={`text-3xl cursor-pointer ${grid ? "  text-[#be161e]" : " "}  `} />
+                            <HiViewGrid onClick={() => changeLayout(false)} className={`text-3xl cursor-pointer  ${grid ? "  " : "text-[#be161e] "}`} />
                         </div>
                     </div>
 
                     {
                         queries?.length === 0 ? (
-                                <div className="flex flex-col items-center shadow">
-                                    <Lottie className='h-72' animationData={groovyWalkAnimation} loop={true}/>;
+                            <div className="flex flex-col items-center shadow">
+                                <Lottie className='h-72' animationData={groovyWalkAnimation} loop={true} />;
 
-                                </div>
-                            ) :
+                            </div>
+                        ) :
 
-                            <div className={`grid grid-cols-1 md:grid-cols-2  gap-6 pb-8 ${grid ? " lg:grid-cols-3": " lg:grid-cols-2"}`}>
+                            <div className={`grid grid-cols-1 md:grid-cols-2  gap-6 pb-8 ${grid ? " lg:grid-cols-3" : " lg:grid-cols-2"}`}>
                                 {[...queries].map((query) => <QueryCard query={query} key={query._id}></QueryCard>)}
                             </div>
 

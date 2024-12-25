@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
-import  profileBg from  "../../assets/profile-bg.jpg"
+import profileBg from "../../assets/profile-bg.jpg"
 import './MyQueries.css'
 import { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
-import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../components/authProvider/AuthProvider.jsx";
 import axios from "axios";
 import Loading from "../../components/Loading/Loading.jsx";
 import Swal from 'sweetalert2'
@@ -20,30 +20,30 @@ import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 
 
 const MyQueries = () => {
-    const [queries, setQueries] = useState([]);  
-    const { user,loading } = useContext(AuthContext)
+    const [queries, setQueries] = useState([]);
+    const { user, loading } = useContext(AuthContext)
     useEffect(() => {
-       
-            try {
-                axios.get( `http://localhost:5000/queries?userEmail=${user?.email}`, {withCredentials: true}   )
-                    .then(response => {
-                        setQueries(response?.data?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-                        
-                    })
 
-              
-           
-            } catch (error) {
-                console.error("Error fetching queries:", error);
-              
-            }
-        
+        try {
+            axios.get(`https://queries-server.vercel.app/queries?userEmail=${user?.email}`, { withCredentials: true })
+                .then(response => {
+                    setQueries(response?.data?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
 
-      
+                })
+
+
+
+        } catch (error) {
+            console.error("Error fetching queries:", error);
+
+        }
+
+
+
     }, [queries]);
-      
-               
-          
+
+
+
 
     const handleDelete = async (id) => {
 
@@ -66,10 +66,10 @@ const MyQueries = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                await axios.delete(`http://localhost:5000/queries/${id}`);
-                  const exist = await [...queries].filter(e => e.id !== id);
-                  setQueries([...exist]);
-                   
+                    await axios.delete(`https://queries-server.vercel.app/queries/${id}`);
+                    const exist = await [...queries].filter(e => e.id !== id);
+                    setQueries([...exist]);
+
                 } catch (error) {
                     console.error("Error deleting query:", error);
                     alert("Failed to delete query. Please try again.");
@@ -79,7 +79,7 @@ const MyQueries = () => {
                     text: "Your file has been deleted.",
                     icon: "success"
                 });
-               
+
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
@@ -91,8 +91,8 @@ const MyQueries = () => {
                 });
             }
         });
-        
-        
+
+
     }
 
     if (loading) {
@@ -104,13 +104,13 @@ const MyQueries = () => {
                 <title> My Queries| RecommendHub </title>
             </Helmet>
             <PageTitle pageTitle="My Queries"></PageTitle>
-          <PageBanner heading='"Have a Product Query? Let’s Find the Best
+            <PageBanner heading='"Have a Product Query? Let’s Find the Best
                     Alternatives!"' subTitle='"Share your concerns, get tailored recommendations, and
                     explore smarter choices."' btn='"Add
                         Your Query Now"'></PageBanner>
 
             <div className="p-6">
-                
+
                 {queries?.length === 0 ? (
                     <div className="flex flex-col items-center">
                         <p className="text-gray-500 mb-4">No queries found.</p>

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SwiperSliderCustom from "./SwiperSliderCustom.jsx";
 import RecommendationCard from "../QueryDetails/RecommendationCard.jsx";
 import Recommendation from "../QueryDetails/Recommendation.jsx";
-import {useLoaderData} from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import QueryCard from "../Queries/QueryCard.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 import TopRatedProduct from "./TopRatedProduct.jsx";
@@ -10,21 +10,21 @@ import axios from "axios";
 
 
 
-const HomePage =  () => {
-  
-    const [queries,setQueries]=useState([]);
+const HomePage = () => {
+
+    const [queries, setQueries] = useState([]);
     const [bestRecommendations, setBestRecommendations] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/all-queries?limit=6')
+        axios.get('https://queries-server.vercel.app/all-queries?limit=6')
             .then((res) => setQueries(res.data))
 
-        axios.get("http://localhost:5000/all-queries/")
-            .then(response =>{
-                const sortedData =   [...response.data].sort((a, b) => b.recommendationCount - a.recommendationCount).slice(0, 3);
+        axios.get("https://queries-server.vercel.app/all-queries/")
+            .then(response => {
+                const sortedData = [...response.data].sort((a, b) => b.recommendationCount - a.recommendationCount).slice(0, 3);
                 setBestRecommendations(sortedData);
             })
-        
+
 
     }, []);
     return (
@@ -43,7 +43,7 @@ const HomePage =  () => {
 
             <div className="container mx-auto  shadow-2xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-                    {queries?.map((query) => <QueryCard query={query} key={query._id}/>)}
+                    {queries?.map((query) => <QueryCard query={query} key={query._id} />)}
                 </div>
             </div>
 

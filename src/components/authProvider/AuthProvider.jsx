@@ -4,11 +4,11 @@ import React, { createContext, useEffect, useState } from 'react';
 import auth from '../../../firebase.config.js';
 import axios from "axios";
 
-export  const AuthContext = createContext(null)
+export const AuthContext = createContext(null)
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
     const [user, setUser] = useState([]);
 
     // product data
@@ -73,13 +73,13 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 
             setUser(currentUser)
-            
+
             if (currentUser?.email) {
-                axios.post('http://localhost:5000/jwt', {user:currentUser?.email},{withCredentials:true})
+                axios.post('https://queries-server.vercel.app/jwt', { user: currentUser?.email }, { withCredentials: true })
                     .then(res => console.log(res.data))
             }
             else {
-                axios.post("http://localhost:5000/logout",{},{ withCredentials: true })
+                axios.post("https://queries-server.vercel.app/logout", {}, { withCredentials: true })
                     .then(res => {
                         console.log("Logout successful:", res.data);
 
@@ -103,7 +103,7 @@ const AuthProvider = ({children}) => {
 
 
 
-    const info = {  createUser, loginUser, loginWithGoogle, user, singOut, loading, updatePass, profileUpdate }
+    const info = { createUser, loginUser, loginWithGoogle, user, singOut, loading, updatePass, profileUpdate }
 
     return (
         <AuthContext.Provider value={info}>

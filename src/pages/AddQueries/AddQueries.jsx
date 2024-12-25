@@ -1,10 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
-import {Helmet} from "react-helmet-async";
-import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
-import {useNavigate} from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../components/authProvider/AuthProvider.jsx";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 
 const AddQueries = () => {
@@ -15,19 +15,19 @@ const AddQueries = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        const form=e.target;        
-        const productName=form.productName.value;
-        const productBrand=form.productBrand.value;
-        const productImageUrl=form.productImageUrl.value;
-        const queryTitle=form.queryTitle.value;
-        const boycottReason=form.boycottReason.value;
-        
 
-       
+        const form = e.target;
+        const productName = form.productName.value;
+        const productBrand = form.productBrand.value;
+        const productImageUrl = form.productImageUrl.value;
+        const queryTitle = form.queryTitle.value;
+        const boycottReason = form.boycottReason.value;
+
+
+
 
         const queryInfo = {
-        
+
             userEmail: user?.email,
             userName: user?.displayName,
             userImage: user?.photoURL,
@@ -38,17 +38,17 @@ const AddQueries = () => {
             productImageUrl,
             queryTitle,
             boycottReason,
-            
+
         };
-        
+
         console.log(queryInfo);
 
         try {
-            const response = await axios.post("http://localhost:5000/add-queries",queryInfo)
+            const response = await axios.post("https://queries-server.vercel.app/add-queries", queryInfo)
                 .then(response => console.log(response))
             toast("Successfully add Query!");
             form.reset()
-           
+
         } catch (error) {
             console.error("Error submitting query:", error);
             alert("An error occurred. Please try again later.");
@@ -62,7 +62,7 @@ const AddQueries = () => {
 
             <PageTitle pageTitle="Add Query" ></PageTitle>
             <PageBanner heading='Submit Your Product Query'
-                        subTitle='Let us help you find the best alternatives and recommendations for your needs.'> 
+                subTitle='Let us help you find the best alternatives and recommendations for your needs.'>
             </PageBanner>
 
 
@@ -81,8 +81,8 @@ const AddQueries = () => {
                                 type="text"
                                 id="productName"
                                 name="productName"
-                              
-                                
+
+
                                 placeholder="Enter the product name"
                                 className="input input-bordered w-full"
                                 required
@@ -96,7 +96,7 @@ const AddQueries = () => {
                                 type="text"
                                 id="productBrand"
                                 name="productBrand"
-                               
+
                                 placeholder="Enter the brand name"
                                 className="input input-bordered w-full"
                                 required
@@ -109,7 +109,7 @@ const AddQueries = () => {
                             <input
                                 type="url"
                                 id="productImageUrl"
-                                name="productImageUrl"                              
+                                name="productImageUrl"
                                 placeholder="Paste the image URL"
                                 className="input input-bordered w-full"
                                 required
@@ -122,7 +122,7 @@ const AddQueries = () => {
                             <input
                                 type="text"
                                 id="queryTitle"
-                                name="queryTitle"                              
+                                name="queryTitle"
                                 placeholder="E.g., Is there a better product with the same quality?"
                                 className="input input-bordered w-full"
                                 required
@@ -135,7 +135,7 @@ const AddQueries = () => {
                             <textarea
                                 id="boycottReason"
                                 name="boycottReason"
-                               
+
                                 placeholder="Explain why you want an alternative"
                                 className="textarea textarea-bordered w-full"
                                 rows="5"
