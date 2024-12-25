@@ -18,11 +18,11 @@ const MyRecommendations = () => {
     useEffect(() => {
         const fetchRecommendations = async () => {
             try {
-                const response = await axios.get(
-                    `http://localhost:5000/recommendations?recommenderEmail=${user?.email}`
-                );
-                setRecommendations(response.data);
-                setLoading(false);
+                axios.get(`http://localhost:5000/recommendations?recommenderEmail=${user?.email}`, {withCredentials:true} )
+                    .then(response =>{
+                        setRecommendations(response.data);                                            
+                    })
+
             } catch (error) {
                 console.error("Error fetching recommendations:", error);
                 setLoading(false);

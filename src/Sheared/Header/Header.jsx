@@ -6,17 +6,18 @@ import { NavLink, useNavigate } from 'react-router';
 import { FaAffiliatetheme } from 'react-icons/fa';
 import { IoMdSunny } from 'react-icons/io';
 import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
+import axios from "axios";
 const Header = () => {
     const { singOut, user,  } = useContext(AuthContext)
 
 
     const navigate = useNavigate()
 
-    const logOutHandle = () => {
+    const logOutHandle =  () => {
         singOut()
-            .then(() => {
+            .then( () => {
                 // Sign-out successful.\
-                navigate("/login")
+                navigate("/login");
             }).catch((error) => {
             // An error happened.
         });

@@ -14,7 +14,7 @@ const RecommendationForMe = () => {
     useEffect(() => {
         const fetchRecommendations = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/recommendations-for-me?userEmail=${user?.email}`);
+                const response = await axios.get(`http://localhost:5000/recommendations-for-me?userEmail=${user?.email}`,{withCredentials:true});
                 setRecommendations(response.data);
             } catch (err) {
                 

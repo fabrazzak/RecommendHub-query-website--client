@@ -28,9 +28,7 @@ const Login = () => {
 
         loginUser(email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                axios.post('http://localhost:5000/jwt', {user:user?.email},{withCredentials:true})
-                    .then(res => console.log(res.data))
+                const user = userCredential.user;                
                 location?.state ? navigate(location?.state) : navigate("/");
 
             })
@@ -59,9 +57,7 @@ const Login = () => {
 
         loginWithGoogle()
             .then((userCredential) => {
-                const user = userCredential.user;
-                axios.post('http://localhost:5000/jwt', {user:user?.email},{withCredentials:true})
-                    .then(res => console.log(res.data))
+                const user = userCredential.user;              
                 location?.state ? navigate(location?.state) : navigate("/");
             })
             .catch((error) => {
