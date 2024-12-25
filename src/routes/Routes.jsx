@@ -26,14 +26,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage></HomePage>,
-                loader: ({ params }) => fetch('http://localhost:5000/all-queries?limit=6')
+                element: <HomePage></HomePage>,               
             }
             ,{
                 path: "/queries",
-                element: <Queries />,
-                loader: () => fetch('http://localhost:5000/all-queries')
-               
+                element: <Queries />,                            
             }
             ,{
                 path: "/queries/:id",

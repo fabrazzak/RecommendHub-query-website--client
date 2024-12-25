@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 import {Helmet} from "react-helmet-async";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
@@ -6,10 +6,19 @@ import {Link, useLoaderData} from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
 import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 import QueryCard from "./QueryCard.jsx";
+import axios from "axios";
 
 const Queries = () => {
     const { loading } = useContext(AuthContext)
-    const queriesData=useLoaderData()
+    const [queriesData,setQueriesData] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:5000/all-queries')
+            .then((res) => setQueriesData(res.data))
+            .catch((err) => console.error('Error fetching queries:', err));
+    }, []);
+
     const queries = [...queriesData].sort((a, b) => b.createdAt - a.createdAt);
     if (loading) {
         return <Loading />;

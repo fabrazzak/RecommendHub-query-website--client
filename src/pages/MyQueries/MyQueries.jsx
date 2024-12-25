@@ -23,20 +23,23 @@ const MyQueries = () => {
     const [queries, setQueries] = useState([]);  
     const { user,loading } = useContext(AuthContext)
     useEffect(() => {
-        const fetchQueries = async () => {
+       
             try {
-                const response = await axios.get(
-                    `http://localhost:5000/queries?userEmail=${user?.email}`
-                );
-                setQueries(response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+                axios.get( `http://localhost:5000/queries?userEmail=${user?.email}`, {withCredentials: true}   )
+                    .then(response => {
+                        setQueries(response?.data?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+                        
+                    })
+
+              
            
             } catch (error) {
                 console.error("Error fetching queries:", error);
               
             }
-        };
+        
 
-        fetchQueries();
+      
     }, [queries]);
       
                
@@ -108,7 +111,7 @@ const MyQueries = () => {
 
             <div className="p-6">
                 
-                {queries.length === 0 ? (
+                {queries?.length === 0 ? (
                     <div className="flex flex-col items-center">
                         <p className="text-gray-500 mb-4">No queries found.</p>
                         <Link to="/add-queries" className="btn bg-[#181718] hover:bg-[#be161e] text-white">
@@ -117,7 +120,7 @@ const MyQueries = () => {
                     </div>
                 ) : (
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {queries.map((query) => (
+                        {queries?.map((query) => (
                             <div key={query.id} className="card shadow-md border">
                                 <figure >
                                     <img

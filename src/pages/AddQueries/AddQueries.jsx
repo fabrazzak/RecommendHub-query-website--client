@@ -45,9 +45,7 @@ const AddQueries = () => {
 
         try {
             const response = await axios.post("http://localhost:5000/add-queries",queryInfo)
-                .then(response => console.log(response))           
-           
-           
+                .then(response => console.log(response))
             toast("Successfully add Query!");
             form.reset()
            

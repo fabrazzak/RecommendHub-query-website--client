@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SwiperSliderCustom from "./SwiperSliderCustom.jsx";
 import RecommendationCard from "../QueryDetails/RecommendationCard.jsx";
 import Recommendation from "../QueryDetails/Recommendation.jsx";
@@ -11,15 +11,22 @@ import axios from "axios";
 
 
 const HomePage =  () => {
-    const queries= useLoaderData()
+  
+    const [queries,setQueries]=useState([]);
     const [bestRecommendations, setBestRecommendations] = useState([]);
-    
-      axios.get("http://localhost:5000/all-queries/")
-         .then(response =>{
-             const sortedData =   [...response.data].sort((a, b) => b.recommendationCount - a.recommendationCount).slice(0, 3);
-             setBestRecommendations(sortedData);
-         })
-    console.log(bestRecommendations);
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/all-queries?limit=6')
+            .then((res) => setQueries(res.data))
+
+        axios.get("http://localhost:5000/all-queries/")
+            .then(response =>{
+                const sortedData =   [...response.data].sort((a, b) => b.recommendationCount - a.recommendationCount).slice(0, 3);
+                setBestRecommendations(sortedData);
+            })
+        
+
+    }, []);
     return (
         <div>
 

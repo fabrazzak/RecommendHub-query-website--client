@@ -11,10 +11,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
 import PageTitle from "../../components/PageTitle/PageTitle.jsx";
+import axios from "axios";
 
 
 const Login = () => {
-    const { loginUser, loginWithGoogle } = useContext(AuthContext)
+    const { loginUser,user, loginWithGoogle } = useContext(AuthContext)
     const location = useLocation();
 
     const [eyes, setEyes] = useState(true);
@@ -28,6 +29,8 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                axios.post('http://localhost:5000/jwt', {user:user?.email},{withCredentials:true})
+                    .then(res => console.log(res.data))
                 location?.state ? navigate(location?.state) : navigate("/");
 
             })
@@ -57,6 +60,8 @@ const Login = () => {
         loginWithGoogle()
             .then((userCredential) => {
                 const user = userCredential.user;
+                axios.post('http://localhost:5000/jwt', {user:user?.email},{withCredentials:true})
+                    .then(res => console.log(res.data))
                 location?.state ? navigate(location?.state) : navigate("/");
             })
             .catch((error) => {
