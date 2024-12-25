@@ -9,11 +9,16 @@ import QueryCard from "./QueryCard.jsx";
 import axios from "axios";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../assets/not-found.json";
+import {IoMdGrid} from "react-icons/io";
+import {BsFillGrid3X3GapFill, BsGridFill} from "react-icons/bs";
+import {HiViewGrid} from "react-icons/hi";
 
 const Queries = () => {
     const { loading } = useContext(AuthContext)
     const [queriesData,setQueriesData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [grid,setGrid] = useState(true);
+    
 
     useEffect(() => {
         axios
@@ -43,6 +48,10 @@ const Queries = () => {
     };
     
     
+    const changeLayout= (value)=>{
+        setGrid(value)
+    }
+    
     if (loading) {
         return <Loading />;
     }
@@ -58,34 +67,41 @@ const Queries = () => {
             <div>
 
                 <div className="container mx-auto  ">
-                    <div className="flex justify-center my-8 join">
-                        <input
-                            type="text"
-                            className="border px-4 py-2 w-1/2 rounded-l join-item"
-                            placeholder="Search by Product Name..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button
-                            onClick={handleSearch}
-                            className="bg-[#181718] hover:bg-[#be161e] text-white px-4 py-2 rounded-r join-item rounded-r-full "
-                        >
-                            Search
-                        </button>
-                    </div>
-
-                    { 
-                        queries?.length === 0 ? (
-                        <div className="flex flex-col items-center shadow">
-                            <Lottie className='h-72' animationData={groovyWalkAnimation} loop={true}/>;
-
+                    <div className="flex ">
+                        <div className="flex justify-center w-full my-8 join">
+                            <input
+                                type="text"
+                                className="border px-4 py-2 w-1/2 rounded-l join-item"
+                                placeholder="Search by Product Name..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button
+                                onClick={handleSearch}
+                                className="bg-[#181718] hover:bg-[#be161e] text-white px-4 py-2 rounded-r join-item rounded-r-full "
+                            >
+                                Search
+                            </button>
                         </div>
-                    ) :                  
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
-                        {[...queries].map((query) => <QueryCard query={query} key={query._id}></QueryCard>)}
+                        <div className='flex justify-end my-8  gap-4 join'>
+                            
+                                <BsFillGrid3X3GapFill onClick={()=>changeLayout(true)}  className={`text-3xl cursor-pointer ${grid ? "  text-[#be161e]": " "}  `}/>
+                            <HiViewGrid onClick={()=>changeLayout(false)}  className={`text-3xl cursor-pointer  ${grid ? "  ": "text-[#be161e] "}`}/>
+                        </div>
                     </div>
-                        
+
+                    {
+                        queries?.length === 0 ? (
+                                <div className="flex flex-col items-center shadow">
+                                    <Lottie className='h-72' animationData={groovyWalkAnimation} loop={true}/>;
+
+                                </div>
+                            ) :
+
+                            <div className={`grid grid-cols-1 md:grid-cols-2  gap-6 pb-8 ${grid ? " lg:grid-cols-3": " lg:grid-cols-2"}`}>
+                                {[...queries].map((query) => <QueryCard query={query} key={query._id}></QueryCard>)}
+                            </div>
+
                     }
                 </div>
             </div>
