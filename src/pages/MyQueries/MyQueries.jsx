@@ -108,7 +108,7 @@ const MyQueries = () => {
                     explore smarter choices."' btn='"Add
                         Your Query Now"'></PageBanner>
 
-            <div className="p-6">
+            <div className="p-6 mx-auto">
 
                 {queries.length === 0 ? (
                     <div className="flex flex-col items-center">

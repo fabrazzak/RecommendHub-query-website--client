@@ -20,7 +20,8 @@ const UpdateMyQuery = () => {
         boycottingReasonDetails,
         userEmail,
         userName,
-        productImageUrl,
+
+        productImageUrl ,
         boycottReason,
 
         createdAt,
@@ -32,7 +33,8 @@ const UpdateMyQuery = () => {
     const [queryData, setQueryData] = useState({
         productName,
         productBrand,
-        productImageUrl,
+
+        productImageUrl ,
         queryTitle,
         boycottReason,
     });
@@ -112,7 +114,7 @@ const UpdateMyQuery = () => {
                             </label>
                             <input
                                 type="url"
-                                name="productImageURL"
+                                name="productImageUrl"
                                 defaultValue={query?.productImageUrl}
                                 onChange={handleChange}
                                 className="input input-bordered w-full"
