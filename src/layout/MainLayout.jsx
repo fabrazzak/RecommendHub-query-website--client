@@ -5,7 +5,7 @@ import {Outlet} from "react-router-dom";
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className='w-full  '>
            <Header></Header>
             <Outlet></Outlet>
            <Footer></Footer>

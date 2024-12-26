@@ -18,7 +18,7 @@ const TopRatedProduct = ({bestRecommendations}) => {
             {/* Section 1: Featured Products */}
             <section
                 className="relative bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-600 text-white py-16 px-8 rounded-lg shadow-lg">
-                <div className="max-w-5xl mx-auto text-center">
+                <div className="max-w-6xl mx-auto text-center">
                     <h2 className="text-4xl font-bold mb-6">Top Recommendation Products</h2>
                     <p className="text-lg mb-10">
                         Hand-picked recommendations just for you. Enhance your experience with the best in class.
@@ -56,7 +56,7 @@ const TopRatedProduct = ({bestRecommendations}) => {
 
             {/* Section 2: Join the Movement */}
             <section className="relative bg-gray-900 text-white py-16 px-8 rounded-lg shadow-lg">
-                <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 className="text-4xl font-bold mb-4">Join the Movement</h2>
                         <p className="text-lg mb-6">
@@ -66,7 +66,7 @@ const TopRatedProduct = ({bestRecommendations}) => {
                       
                         <Link to='/add-queries'>
                             <button className = " inline-block px-6 py-3 bg-purple-500 text-white font-bold rounded-lg hover:bg-purple-600 transition " >
-                                Recommend
+                             Add Queries
                             </button>
                         </Link>
                     </div>

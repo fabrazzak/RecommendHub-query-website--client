@@ -66,7 +66,7 @@ const Queries = () => {
 
             <div>
 
-                <div className="container mx-auto  ">
+                <div className="container mx-auto max-w-6xl  ">
                     <div className="flex ">
                         <div className="flex justify-center w-full my-8 join">
                             <input
