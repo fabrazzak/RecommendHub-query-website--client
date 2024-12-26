@@ -71,7 +71,7 @@ const Register = () => {
             </Helmet>
             <PageTitle  pageTitle='Sign-up'></PageTitle>
             <div className="">
-                <div className=" mx-auto flex justify-center items-center py-10 ">
+                <div className="md:max-w-6xl  mx-auto flex justify-center items-center py-10 shadow-2xl ">
                     
                     <div className="card bg-base-100 md:w-2/5  shrink-0 shadow-2xl">
                         <form onSubmit={handleOnSubmit} className="card-body">
