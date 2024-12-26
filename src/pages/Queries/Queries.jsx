@@ -22,7 +22,7 @@ const Queries = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/all-queries')
+            .get('https://queries-server.vercel.app/all-queries')
             .then((res) => setQueriesData(res.data))
             .catch((err) => console.error('Error fetching queries:', err));
     }, []);
@@ -33,7 +33,7 @@ const Queries = () => {
     // Handle Search
     const handleSearch = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/search`, {
+            const res = await axios.get(`https://queries-server.vercel.app/search`, {
                 params: { search: searchTerm },
             });
             if (loading) {

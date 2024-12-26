@@ -24,8 +24,8 @@ const MyQueries = () => {
     const { user, loading } = useContext(AuthContext)
     useEffect(() => {
 
-        try { 
-            axios.get(`http://localhost:5000/queries?userEmail=${user?.email}`, { withCredentials: true }) 
+        try {
+            axios.get(`https://queries-server.vercel.app/queries?userEmail=${user?.email}`, { withCredentials: true })
                 .then(response => {
                     setQueries(response?.data?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
 
@@ -64,7 +64,7 @@ const MyQueries = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`http://localhost:5000/queries/${id}`);
+                    await axios.delete(`https://queries-server.vercel.app/queries/${id}`);
                     const exist = await [...queries].filter(e => e.id !== id);
                     setQueries([...exist]);
 
@@ -96,7 +96,7 @@ const MyQueries = () => {
     if (loading) {
         return <Loading />;
     }
-   
+
     return (
         <div>
             <Helmet>

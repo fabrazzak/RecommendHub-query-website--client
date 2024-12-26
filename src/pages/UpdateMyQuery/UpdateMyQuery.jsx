@@ -42,7 +42,7 @@ const UpdateMyQuery = () => {
         e.preventDefault();
 
         try {
-            await axios.put(`http://localhost:5000/queries/${_id}`, updateQueryData);
+            await axios.put(`https://queries-server.vercel.app/queries/${_id}`, updateQueryData);
             toast("Query updated successfully!");
 
         } catch (error) {

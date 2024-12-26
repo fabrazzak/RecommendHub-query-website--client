@@ -16,10 +16,10 @@ const HomePage = () => {
     const [bestRecommendations, setBestRecommendations] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/all-queries?limit=6')
+        axios.get('https://queries-server.vercel.app/all-queries?limit=6')
             .then((res) => setQueries(res.data))
 
-        axios.get("http://localhost:5000/all-queries/")
+        axios.get("https://queries-server.vercel.app/all-queries/")
             .then(response => {
                 const sortedData = [...response.data].sort((a, b) => b.recommendationCount - a.recommendationCount).slice(0, 3);
                 setBestRecommendations(sortedData);

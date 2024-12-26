@@ -75,11 +75,11 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
 
             if (currentUser?.email) {
-                axios.post('http://localhost:5000/jwt', { user: currentUser?.email }, { withCredentials: true })
+                axios.post('https://queries-server.vercel.app/jwt', { user: currentUser?.email }, { withCredentials: true })
                     .then(res => console.log(res.data))
             }
             else {
-                axios.post("http://localhost:5000/logout", {}, { withCredentials: true })
+                axios.post("https://queries-server.vercel.app/logout", {}, { withCredentials: true })
                     .then(res => {
                         console.log("Logout successful:", res.data);
 

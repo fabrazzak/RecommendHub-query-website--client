@@ -18,7 +18,7 @@ const QueryDetails = () => {
 
     useEffect(() => {
         if (queryDetails?._id) {
-            axios.get(`http://localhost:5000/add-recommend/${queryDetails._id}`)
+            axios.get(`https://queries-server.vercel.app/add-recommend/${queryDetails._id}`)
                 .then(response => {
                     setRecommendations(response.data);
                     console.log('Response Data:', response.data); // Logs the data directly
@@ -57,7 +57,7 @@ const QueryDetails = () => {
             timestamp: new Date()
         }
 
-        await axios.post('http://localhost:5000/add-recommend', { addRecommendationInfo })
+        await axios.post('https://queries-server.vercel.app/add-recommend', { addRecommendationInfo })
             .then(function (response) {
                 console.log(response);
             })
