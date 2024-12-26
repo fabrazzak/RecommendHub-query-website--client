@@ -77,7 +77,7 @@ const Login = () => {
             <PageTitle pageTitle="Login Page"></PageTitle>
 
 
-            <div className="flex flex-col gap-6 shadow-2xl mx-auto justify-center items-center py-10" >
+            <div className="md:max-w-6xl  flex flex-col gap-6 shadow-2xl mx-auto justify-center items-center py-10" >
                 <div className="card bg-base-100 md:w-2/5 shrink-0 shadow-2xl">
                     <form onSubmit={handleOnSubmit} className="card-body">
 

@@ -18,7 +18,7 @@ const MyRecommendations = () => {
     useEffect(() => {
         const fetchRecommendations = async () => {
             try {
-                axios.get(`https://queries-server.vercel.app/recommendations?recommenderEmail=${user?.email}`, { withCredentials: true })
+                axios.get(`http://localhost:5000/recommendations?recommenderEmail=${user?.email}`, { withCredentials: true })
                     .then(response => {
                         setRecommendations(response.data);
                     })
@@ -55,7 +55,7 @@ const MyRecommendations = () => {
                 if (result.isConfirmed) {
                     try {
                         // Delete recommendation
-                        await axios.delete(`https://queries-server.vercel.app/recommendations?id=${id}&productId=${queryId}`);
+                        await axios.delete(`http://localhost:5000/recommendations?id=${id}&productId=${queryId}`);
 
                         // Update UI
                         setRecommendations((prev) =>

@@ -44,7 +44,7 @@ const AddQueries = () => {
         console.log(queryInfo);
 
         try {
-            const response = await axios.post("https://queries-server.vercel.app/add-queries", queryInfo)
+            const response = await axios.post("http://localhost:5000/add-queries", queryInfo)
                 .then(response => console.log(response))
             toast("Successfully add Query!");
             form.reset()
