@@ -7,6 +7,7 @@ import QueryCard from "../Queries/QueryCard.jsx";
 import PageBanner from "../../components/PageBanner/PageBanner.jsx";
 import TopRatedProduct from "./TopRatedProduct.jsx";
 import axios from "axios";
+import {Helmet} from "react-helmet-async";
 
 
 
@@ -29,6 +30,9 @@ const HomePage = () => {
     }, []);
     return (
         <div>
+            <Helmet>
+                <title> Home  | RecommendHub</title>
+            </Helmet>
 
 
             <SwiperSliderCustom></SwiperSliderCustom>

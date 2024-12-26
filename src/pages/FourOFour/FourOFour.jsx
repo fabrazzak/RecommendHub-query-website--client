@@ -14,7 +14,7 @@ const FourOFour = () => {
     return (
         <div className='md:h-[70vh] flex flex-col justify-center items-center'>
             <Helmet>
-                <title> Page Not Found | Canada Career Counselling</title>
+                <title> Page Not Found | RecommendHub</title>
             </Helmet>
             <div className="card bg-base-100     mx-auto">
                 <Lottie className='h-72' animationData={groovyWalkAnimation} loop={true} />;
