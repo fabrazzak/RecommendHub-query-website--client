@@ -58,8 +58,4 @@ Welcome to the **Product Recommendation Platform**! This project is designed to 
 
 ---
 
-## 📑 Installation Instructions
-### Clone the Repositories
-```bash
-git clone <client-repo-link>
-git clone <server-repo-link>
+
