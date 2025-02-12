@@ -17,8 +17,9 @@ const Footer = () => {
                             <Link to='/' className="link link-hover">Home</Link>
                             <Link to='queries' className="link link-hover">Queries</Link>
                         </div>
-
-
+                       
+ 
+ 
                     </nav>
                     <nav className=" flex flex-col gap-6">
                         <h2 className='text-md font-bold '>Social Media</h2>

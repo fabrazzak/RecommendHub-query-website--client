@@ -1,105 +1,112 @@
-import React, { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../components/authProvider/AuthProvider.jsx";
 
-
-
-import { FaAffiliatetheme } from 'react-icons/fa';
-import { IoMdSunny } from 'react-icons/io';
-import {AuthContext} from "../../components/authProvider/AuthProvider.jsx";
-import axios from "axios";
 const Header = () => {
-    const { singOut, user,  } = useContext(AuthContext)
+    const { singOut, user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-
-    const navigate = useNavigate()
-
-    const logOutHandle =  () => {
+    const logOutHandle = () => {
         singOut()
-            .then( () => {
-                // Sign-out successful.\
+            .then(() => {
                 navigate("/login");
-            }).catch((error) => {
-            // An error happened.
-        });
+            })
+            .catch((error) => {
+                console.error("Logout Error:", error);
+            });
+    };
 
-    }
-
-    const itemList =
+    const itemList = (
         <>
-
-            <li> <NavLink to="/">Home</NavLink>    </li>
-            <li> <NavLink to="/queries">Queries</NavLink>  </li>
-            {user?
+            <li>
+                <NavLink to="/" className="hover:text-gray-200">Home</NavLink>
+            </li>
+            <li>
+                <NavLink to="/queries" className="hover:text-gray-200">Queries</NavLink>
+            </li>
+            {user ? (
                 <>
-                    <li><NavLink to="/recommendations-for-me">Recommendations For Me</NavLink></li>
-                    <li><NavLink to="/my-queries">My Queries</NavLink></li>
-                    <li><NavLink to="/my-recommendations">My recommendations</NavLink></li>
+                    <li>
+                        <NavLink to="/recommendations-for-me" className="hover:text-gray-200">
+                            Recommendations For Me
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/my-queries" className="hover:text-gray-200">My Queries</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/my-recommendations" className="hover:text-gray-200">
+                            My Recommendations
+                        </NavLink>
+                    </li>
                 </>
-                :
-                ""
-            }
-
-
+            ) : null}
         </>
-
+    );
 
     return (
-        <div className=''>
-            <div className={`navbar  bg-[#be161e] text-white px-6 `}>
-                <div className="navbar-start flex flex-col md:flex-row ">
-                <div className="dropdown">
-                        <div tabIndex={0} role="button" className={`btn btn-ghost lg:hidden `}>
+        <>
+            {/* ✅ Sticky Navbar with Proper z-index */}
+            <nav className="fixed top-0 left-0 w-full bg-[#be161e] text-white shadow-md z-50">
+                <div className="navbar px-6 flex items-center justify-between">
+                    {/* ✅ Mobile Dropdown */}
+                    <div className="dropdown lg:hidden">
+                        <div tabIndex={0} className="btn btn-ghost">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
+                                className="h-6 w-6"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                stroke="currentColor">
+                                stroke="currentColor"
+                            >
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
+                                    d="M4 6h16M4 12h8m-8 6h16"
+                                />
                             </svg>
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm z-20 dropdown-content bg-base-100 rounded-box w-72 mt-3 text-[#181718]  p-2 shadow z-10">
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box w-60 mt-3 text-black p-2 shadow-lg"
+                        >
                             {itemList}
-
                         </ul>
                     </div>
-                    <a className={`btn btn-ghost text-xl  `}>RecommendHub</a>
+
+                    {/* ✅ Logo */}
+                    <NavLink to="/" className="text-2xl font-bold">
+                        RecommendHub
+                    </NavLink>
+
+                    {/* ✅ Desktop Menu */}
+                    <ul className="hidden lg:flex space-x-6 font-semibold">{itemList}</ul>
+
+                    {/* ✅ User Section */}
+                    <div className="flex items-center">
+                        {user ? (
+                            <button onClick={logOutHandle} className="flex items-center space-x-3">
+                                <img
+                                    className="w-10 h-10 rounded-full"
+                                    src={user?.photoURL}
+                                    alt="User"
+                                    referrerPolicy="no-referrer"
+                                />
+                                <span className="font-bold">Logout</span>
+                            </button>
+                        ) : (
+                            <NavLink to="/login" className="font-bold">
+                                Log-in
+                            </NavLink>
+                        )}
+                    </div>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className={`menu menu-horizontal px-1 font-bold gap-2  `}>
+            </nav>
 
-                        {itemList}
-
-                    </ul>
-                </div>
-                <div className="navbar-end  flex gap-6 flex-col md:flex-row">
-                    {user ? <li className={`flex `} onClick={logOutHandle}>
-                                 <a href="#" data-tooltip-id="my-tooltip"
-                                    data-tooltip-content={user.displayName} className='flex gap-4 content-center item-center justify-center ' > 
-                                     <img className='w-10 h-10 rounded-full ' src={user?.photoURL} alt="" referrerPolicy="no-referrer" />
-                                     <span className={`mt-2 font-bold`}>Logout</span>
-                                 </a>
-                            </li>
-
-                        :
-                        <ul className='flex gap-6 font-bold menu'>
-                            <li >
-                                <NavLink to='/login'>Log-in</NavLink>
-                            </li>
-                            
-                        </ul>}
-                    
-                </div>
-            </div>
-           
-
-        </div>
+            {/* ✅ Ensure content starts below navbar */}
+            <div className="mt-16"></div>
+        </>
     );
 };
 
