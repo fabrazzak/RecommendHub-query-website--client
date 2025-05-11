@@ -1,61 +1,75 @@
-# Product Recommendation Platform
+# 🚀 Product Recommendation Platform
 
-Welcome to the **Product Recommendation Platform**! This project is designed to help users add, view, and manage queries and recommendations for various products.
-
----
-
-## 🌟 Features
-- User-friendly platform for product queries and recommendations.
-- **CRUD Operations**:
-  - Add, Update, and Delete queries.
-  - Add and Delete recommendations.
-- **Authentication**:
-  - Email/Password and Google Login via Firebase.
-  - JWT-protected private routes.
-- Responsive design for mobile, tablet, and desktop.
-- Search functionality for queries by product name.
-- Dynamic grid layout toggling for queries.
+Welcome to the **Product Recommendation Platform** — a user-centric web application designed to manage product-related queries and share helpful recommendations.
 
 ---
 
-## 🖼️ Live Demo
-[https://queries-b074f.web.app/](#) - *Insert your live deployment URL here.*
+## ✨ Features
+
+- 🧠 **Query & Recommendation System**
+  - Add, update, and delete product queries
+  - Add and remove recommendations tied to each query
+
+- 🔐 **Secure Authentication**
+  - Firebase login via Email/Password and Google
+  - Private routes protected using JWT
+
+- 🔎 **Smart Search**
+  - Filter queries based on product name
+
+- 🖥️ **Responsive Design**
+  - Fully responsive across mobile, tablet, and desktop
+  - Grid layout toggle for enhanced browsing experience
+
+- 🌐 **Dynamic Navigation**
+  - Navbar updates based on user authentication state
+
+- 🧩 **Error Handling**
+  - Custom 404 page with redirection to homepage
 
 ---
 
-## 🚀 Key Features
-1. **Dynamic Navigation**:
-   - Conditional Navbar for logged-in and non-logged-in users.
-2. **Query Management**:
-   - Add queries with detailed information.
-   - View and manage user-specific queries.
-3. **Recommendations**:
-   - Add recommendations for specific queries.
-   - View recommendations made by others.
-4. **Responsive Design**:
-   - Fully responsive layout for all devices.
-5. **Error Handling**:
-   - Custom 404 error page with navigation to the homepage.
-6. **Security**:
-   - Firebase environment keys and MongoDB credentials are securely managed.
+## 🌍 Live Demo
+
+🔗 [Click here to try the live demo](https://queries-b074f.web.app/) *(Insert actual link if not working)*
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
+
 ### Frontend:
-- React.js
-- Tailwind CSS
-- DaisyUI
+- **React.js** — Modern UI development
+- **Tailwind CSS** — Utility-first styling framework
+- **DaisyUI** — Tailwind component library
+
 ### Backend:
-- Node.js
-- Express.js
-- MongoDB
-- JWT for Authentication
-### Other:
-- Firebase for Authentication
-- Vercel for Deployment (Frontend)
-- Render/Heroku for Deployment (Backend)
+- **Node.js** — JavaScript runtime environment
+- **Express.js** — Backend API framework
+- **MongoDB** — NoSQL database
+- **JWT** — Token-based authentication system
+
+### Other Tools:
+- **Firebase** — Authentication and hosting
+- **Vercel** — Deployment for frontend
+- **Render / Heroku** — Deployment for backend
 
 ---
 
+## 📦 Project Highlights
+
+- 🔐 Environment variables securely managed (Firebase + MongoDB)
+- 🎯 Clean and modular code for scalability
+- 💡 Real-world use case for product Q&A systems
+
+---
+
+## 🧑‍💻 Author
+
+Developed by **Abdur Razzak**  
+🌐 [Portfolio Website](https://abdur-razzak.online)  
+📫 [Contact Me](mailto:abdurrazzakportfolio@gmail.com)
+
+---
+
+> 💬 Contributions, suggestions, and feedback are always welcome!
 
